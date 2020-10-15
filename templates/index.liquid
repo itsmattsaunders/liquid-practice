@@ -1,0 +1,62 @@
+<div id="index-container">
+  <div class="hero-img">
+    <div class="hero-text">
+      <!-- <h1 class="capitalize copy-hero">
+        {{ "general.home.hero" | t }}
+      </h1> -->
+      <h1 class="logo">{{ "general.home.logo" | t }}</h1>
+      <h2 class="capitalize">
+        {{ "general.home.hero-secondary" | t }}
+      </h2>
+    </div>
+  </div>
+  <div class="product-featured">
+    {% for product in collections.frontpage.products limit:1 %}
+
+    <a href="{{ product.url | within: collection }}">
+      <img
+        class="img-display"
+        src="{{ product.featured_image.src | img_url: '1000x' }}"
+        alt="{{ product.featured_image.alt | escape }}"
+      />
+      <!-- <h2 class="product-title handwriting black">
+        {{ product.title }}
+      </h2> -->
+    </a>
+
+    {% endfor %}
+  </div>
+
+  <div class="about">
+    <section>
+      <h3 class="about-title">
+        {{ "general.about.title" | t }}
+      </h3>
+    </section>
+
+    <section>
+      <p class="about-text">
+        {{ "general.about.copy" | t }}
+      </p>
+    </section>
+  </div>
+
+  <div class="product-collection">
+    {% for product in collections.all.products %}
+
+    <section>
+      <a class="card" href="{{ product.url | within: collection }}">
+        {% for image in product.images %}
+        <img
+          class="card-image"
+          src="{{ image.src | product_img_url: 'large' }}"
+        />
+        <p class="card-text">
+          {{ product.title }}
+        </p>
+      </a>
+    </section>
+
+    {% endfor %} {% endfor %}
+  </div>
+</div>
